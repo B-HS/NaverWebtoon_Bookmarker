@@ -1,8 +1,10 @@
 /// <reference types="chrome" />
 /// <reference types="vite-plugin-svgr/client" />
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const App = () => {
+    const [bookmark, setBookmark] = useState<string[]>();
+    const [isBookmark, setIsBookmark] = useState<boolean>(false);
     const addButtonToTabList = (dayOfWebtoons: Element) => {
         let dayOfWebtoonsCategory = dayOfWebtoons.childNodes[0].childNodes[0];
         let clonedTab = dayOfWebtoonsCategory.childNodes[2].childNodes[0].cloneNode() as HTMLButtonElement;
@@ -12,14 +14,20 @@ const App = () => {
             if (clonedTab.textContent === '북마크만 보기') {
                 clonedTab.ariaSelected = 'true';
                 clonedTab.textContent = '북마크 해제';
+                setIsBookmark(true);
             } else {
                 clonedTab.ariaSelected = 'false';
                 clonedTab.textContent = '북마크만 보기';
+                setIsBookmark(false);
             }
         });
         if (dayOfWebtoonsCategory.childNodes[2].textContent?.split('순')[4] !== '북마크만 보기') {
             dayOfWebtoonsCategory.childNodes[2].appendChild(clonedTab);
         }
+    };
+
+    const removeStatusText = (target: string) => {
+        return target.replace('UP', '').replace('청유물', '').replace('휴재', '').replace('신작', '');
     };
 
     const setWebtoonList = (webtoonSection: Element) => {
@@ -28,11 +36,9 @@ const App = () => {
         let nameOfWebtoons: string[][] = [];
         webtoons.childNodes.forEach((v, i) => {
             let tmp: string[] = [];
-            console.log('===================================');
             v.childNodes[1].childNodes.forEach((li) => {
-                tmp.push(li.textContent as string);
+                tmp.push(removeStatusText(li.textContent!) as string);
             });
-            console.log('===================================');
             nameOfWebtoons.push(tmp);
             localStorage.setItem(days[i], JSON.stringify(tmp));
         });
@@ -50,7 +56,18 @@ const App = () => {
         let dayOfWebtoons = webtoonSection[1];
         addButtonToTabList(dayOfWebtoons);
         setWebtoonList(dayOfWebtoons);
+        chrome.storage.onChanged.addListener(() => {
+            chrome.storage.local.get('bookmark').then((res) => {
+                setBookmark(() => [...JSON.parse(res['bookmark'])]);
+            });
+        });
     }, []);
+
+    useEffect(() => {
+        let webtoonSection = document.getElementsByClassName('component_wrap') as HTMLCollectionOf<Element>;
+        let dayOfWebtoons = webtoonSection[1];
+    }, [bookmark]);
+
     return <></>;
 };
 

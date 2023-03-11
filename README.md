@@ -5,4 +5,5 @@
 # 스택
 - React
 - Typescript
+- Chakra UI
 - CRXJS - https://crxjs.dev/vite-plugin
