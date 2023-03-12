@@ -6,6 +6,16 @@ const App = () => {
     const [bookmark, setBookmark] = useState<string[]>();
     const [isBookmark, setIsBookmark] = useState<boolean>(false);
 
+    const initFeature = () => {
+        let webtoonSection = document.getElementsByClassName('component_wrap') as HTMLCollectionOf<HTMLElement>;
+        let dayOfWebtoons = webtoonSection[1];
+        addButtonToTabList(dayOfWebtoons);
+        setWebtoonList(dayOfWebtoons);
+        chrome.storage.onChanged.addListener(() => {
+            getBookmark();
+        });
+    };
+
     const addButtonToTabList = (dayOfWebtoons: HTMLElement) => {
         let dayOfWebtoonsCategory = dayOfWebtoons.childNodes[0].childNodes[0];
         let clonedTab = dayOfWebtoonsCategory.childNodes[2].childNodes[0].cloneNode() as HTMLButtonElement;
@@ -36,12 +46,9 @@ const App = () => {
 
     const hideWebtoons = (webtoonSection: HTMLElement) => {
         let webtoons = webtoonSection.childNodes[1];
-        webtoons.childNodes.forEach((v, i) => {
-            // 아니 이 멍청한 TS가 node에 무조건 style있는데 없다함, 일단 any로 처리
-
+        webtoons.childNodes.forEach((v: HTMLLIElement | Node) => {
             v.childNodes[1].childNodes.forEach((li: any) => {
                 if (!bookmark?.includes(removeStatusText(li.textContent)) && isBookmark) {
-                    console.log(li.style!.display);
                     li.style.display = 'none';
                 } else {
                     li.style.display = 'list-item';
@@ -83,21 +90,35 @@ const App = () => {
     };
 
     useEffect(() => {
-        let webtoonSection = document.getElementsByClassName('component_wrap') as HTMLCollectionOf<HTMLElement>;
-        let dayOfWebtoons = webtoonSection[1];
-        addButtonToTabList(dayOfWebtoons);
-        setWebtoonList(dayOfWebtoons);
-        chrome.storage.onChanged.addListener(() => {
-            getBookmark();
+        chrome.runtime.onMessage.addListener((request, a, b) => {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                } else localStorage.removeItem('firstLoad');
+            }
+            if (request.message === 'webtoon') {
+                initFeature();
+            }
         });
+
+        initFeature();
     }, []);
 
     useEffect(() => {
+        if (window.location.href !== 'https://comic.naver.com/webtoon') {
+            return;
+        }
         let webtoonSection = document.querySelectorAll<HTMLElement>('.component_wrap');
         let dayOfWebtoons = webtoonSection[1];
         hideWebtoons(dayOfWebtoons);
+        if (isBookmark) {
+            let dayOfWebtoonsCategory = dayOfWebtoons.childNodes[0].childNodes[0];
+            let target = dayOfWebtoonsCategory.childNodes[2].childNodes[4] as HTMLButtonElement;
+            target.ariaSelected = 'true';
+            target.textContent = '북마크 해제';
+        }
     }, [isBookmark, bookmark]);
-
     return <></>;
 };
 
