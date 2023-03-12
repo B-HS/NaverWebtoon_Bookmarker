@@ -7,3 +7,8 @@
 - Typescript
 - Chakra UI
 - CRXJS - https://crxjs.dev/vite-plugin
+
+# 버그
+- 익스텐션 버튼으로 북마크 전환할때 북마크 버튼이 바뀌지 않는 문제
+- 뒤로가기나 다른 페이지에서 들어올때 익스텐션이 작동하지 않는 문제
+

@@ -1,15 +1,14 @@
-import { Box, Center, Container, Divider, Flex, Grid, GridItem, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { Flex, Grid, GridItem, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import useInput from '../Hooks/useInput';
 
 const Body = ({ currentMenu }: { currentMenu: string }) => {
     const [webtoonsOfDay, setWebtoonsOfDay] = useState<string[]>([]);
-    const [bookmark, setBookmark] = useState<string[]>();
+    const [bookmark, setBookmark] = useState<string[]>([]);
     const [filteredList, setFilteredList] = useState<string[]>([]);
     const [keyword, onKey] = useInput();
 
     const bookmarkManaging = (target: string) => {
-        console.log(bookmark);
         if (bookmark) {
             if (target === 'clear') {
                 setBookmark(() => []);
@@ -82,7 +81,7 @@ const Body = ({ currentMenu }: { currentMenu: string }) => {
 
             <Grid templateColumns="repeat(2, 1fr)" gap={3} paddingX={2}>
                 {filteredList.map((v, i) => (
-                    <GridItem key={(i + 1) * (i + 1) + i + 1 + i + 1} cursor={'pointer'} w="100%" onClick={() => bookmarkManaging(v)} style={bookmark?.includes(v) ? { color: "blue" } : {}}>
+                    <GridItem key={(i + 1) * (i + 1) + i + 1 + i + 1} cursor={'pointer'} w="100%" onClick={() => bookmarkManaging(v)} style={bookmark?.includes(v) ? { color: 'blue' } : {}}>
                         <Flex gap={1}>
                             {bookmark?.includes(v) && <Text key={(i + 1) * -1}>✓ </Text>}
                             <Text key={i + 1}>{v}</Text>

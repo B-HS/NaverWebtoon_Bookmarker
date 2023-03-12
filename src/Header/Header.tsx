@@ -7,7 +7,7 @@ const Header = ({ setMenu, days }: { setMenu: Function; days: string[] }) => {
                 <Text fontSize={'2xl'}>네이버웹툰 북마커</Text>
                 <Flex gap={1}>
                     {days.map((v, i) => (
-                        <Text key={i} fontSize={'sm'} onClick={() => setMenu(v)}>
+                        <Text key={i} fontSize={'sm'} onClick={() => setMenu(v)} style={{cursor:'pointer'}}>
                             {v}
                         </Text>
                     ))}
