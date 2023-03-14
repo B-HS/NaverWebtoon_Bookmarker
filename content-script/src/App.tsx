@@ -91,12 +91,12 @@ const App = () => {
 
     useEffect(() => {
         chrome.runtime.onMessage.addListener((request, a, b) => {
-            if (window.localStorage) {
-                if (!localStorage.getItem('firstLoad')) {
-                    localStorage['firstLoad'] = true;
-                    window.location.reload();
-                } else localStorage.removeItem('firstLoad');
-            }
+            // if (window.localStorage) {
+            //     if (!localStorage.getItem('firstLoad')) {
+            //         localStorage['firstLoad'] = true;
+            //         window.location.reload();
+            //     } else localStorage.removeItem('firstLoad');
+            // }
             if (request.message === 'webtoon') {
                 initFeature();
             }

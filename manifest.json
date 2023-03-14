@@ -9,15 +9,14 @@
     },
     "permissions": ["storage", "tabs", "webNavigation"],
     "background": {
-        "service_worker": "background.ts",
+        "service_worker": "background.js",
         "module" : true
     },
     "content_scripts": [
         {
-            "matches": ["https://comic.naver.com/*"],
+            "matches": ["https://comic.naver.com/webtoon"],
             "js": ["content-script/src/main.tsx"],
-            "run_at": "document_idle",
-            "media": []
+            "run_at": "document_idle"
         }
     ]
 }
