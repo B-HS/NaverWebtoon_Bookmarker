@@ -1,10 +1,7 @@
-/// <reference types="chrome" />
-/// <reference types="vite-plugin-svgr/client" />
-
-import Header from './Header/Header';
 import { Container } from '@chakra-ui/react';
-import Body from './Body/Body';
 import { useState } from 'react';
+import Body from './Body/Body';
+import Header from './Header/Header';
 function App() {
     const [menu, setMenu] = useState<string>('월');
     const days = ['월', '화', '수', '목', '금', '토', '일'];

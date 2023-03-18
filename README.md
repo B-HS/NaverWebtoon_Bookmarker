@@ -5,10 +5,6 @@
 웹툰 찾는 시간도 이제 아깝다 !! <br>
 미리 등록해두고 메인에서 바로바로 보자 !
 
-# 폐기
-- build하면 무슨짓을 해도 작동을안함
-- 주말에 처음부터 새로 다시 만들어 보기 
-
 # 스택
 - React
 - Typescript
@@ -16,13 +12,12 @@
 - CRXJS - https://crxjs.dev/vite-plugin
 
 # 남은 일
-- 아이콘 만들기
-- 또 버그가 없나 테스트해보기
 - 스토어에 제출해보기
-- 제출 후, local말고 sync로 계정에 북마크 저장해보기
+- 1.1버전 업데이트로 local말고 sync로 북마크리스트 저장해보기
 
 # 버그
 - 뒤로가기나 다른 페이지에서 들어올때 익스텐션이 작동하지 않는 문제<br>
-ㄴ 임시방편으로 새로고침하여 해결
+ㄴ interval로 냅다 1초마다 띄우기, 아래 링크 참조<br>
+ㄴ  https://github.com/BaekjoonHub/BaekjoonHub/blob/master/scripts/baekjoon/baekjoon.js <br>
 - 익스텐션 버튼으로 북마크 전환할때 북마크 버튼이 바뀌지 않는 문제<br>
 ㄴ 해결

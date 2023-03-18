@@ -1,12 +1,13 @@
-/// <reference types="chrome" />
-/// <reference types="vite-plugin-svgr/client" />
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const App = () => {
     const [bookmark, setBookmark] = useState<string[]>();
     const [isBookmark, setIsBookmark] = useState<boolean>(false);
 
     const initFeature = () => {
+        if (window.location.href !== 'https://comic.naver.com/webtoon') {
+            return;
+        }
         let webtoonSection = document.getElementsByClassName('component_wrap') as HTMLCollectionOf<HTMLElement>;
         let dayOfWebtoons = webtoonSection[1];
         addButtonToTabList(dayOfWebtoons);
@@ -35,7 +36,7 @@ const App = () => {
                 setIsBookmark(false);
             }
         });
-        if (dayOfWebtoonsCategory.childNodes[2].textContent?.split('순')[4] !== '북마크만 보기') {
+        if (!dayOfWebtoonsCategory.childNodes[2].textContent?.split('순')[4].startsWith('북마크')) {
             dayOfWebtoonsCategory.childNodes[2].appendChild(clonedTab);
         }
     };
@@ -71,13 +72,15 @@ const App = () => {
             nameOfWebtoons.push(tmp);
             localStorage.setItem(days[i], JSON.stringify(tmp));
         });
-        chrome.storage.local.set({ 월: JSON.stringify(nameOfWebtoons[0]) });
-        chrome.storage.local.set({ 화: JSON.stringify(nameOfWebtoons[1]) });
-        chrome.storage.local.set({ 수: JSON.stringify(nameOfWebtoons[2]) });
-        chrome.storage.local.set({ 목: JSON.stringify(nameOfWebtoons[3]) });
-        chrome.storage.local.set({ 금: JSON.stringify(nameOfWebtoons[4]) });
-        chrome.storage.local.set({ 토: JSON.stringify(nameOfWebtoons[5]) });
-        chrome.storage.local.set({ 일: JSON.stringify(nameOfWebtoons[6]) });
+        if (chrome.storage.local) {
+            chrome.storage.local.set({ 월: JSON.stringify(nameOfWebtoons[0]) });
+            chrome.storage.local.set({ 화: JSON.stringify(nameOfWebtoons[1]) });
+            chrome.storage.local.set({ 수: JSON.stringify(nameOfWebtoons[2]) });
+            chrome.storage.local.set({ 목: JSON.stringify(nameOfWebtoons[3]) });
+            chrome.storage.local.set({ 금: JSON.stringify(nameOfWebtoons[4]) });
+            chrome.storage.local.set({ 토: JSON.stringify(nameOfWebtoons[5]) });
+            chrome.storage.local.set({ 일: JSON.stringify(nameOfWebtoons[6]) });
+        }
     };
 
     const getBookmark = () => {
@@ -90,19 +93,11 @@ const App = () => {
     };
 
     useEffect(() => {
-        chrome.runtime.onMessage.addListener((request, a, b) => {
-            // if (window.localStorage) {
-            //     if (!localStorage.getItem('firstLoad')) {
-            //         localStorage['firstLoad'] = true;
-            //         window.location.reload();
-            //     } else localStorage.removeItem('firstLoad');
-            // }
-            if (request.message === 'webtoon') {
-                initFeature();
-            }
-        });
+        const setBookmark = setInterval(() => {
+            initFeature();
+        }, 1000);
 
-        initFeature();
+        return () => clearInterval(setBookmark);
     }, []);
 
     useEffect(() => {

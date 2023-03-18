@@ -7,14 +7,10 @@
         "default_popup": "index.html",
         "default_icon": "logo192.png"
     },
-    "permissions": ["storage", "tabs", "webNavigation"],
-    "background": {
-        "service_worker": "background.js",
-        "module" : true
-    },
+    "permissions": ["storage"],
     "content_scripts": [
         {
-            "matches": ["https://comic.naver.com/webtoon"],
+            "matches": ["https://comic.naver.com/*"],
             "js": ["content-script/src/main.tsx"],
             "run_at": "document_idle"
         }

@@ -6,5 +6,5 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
-  "include": ["vite.config.ts", "manifest.json", "background.js"]
+  "include": ["vite.config.ts", "manifest.json"]
 }
