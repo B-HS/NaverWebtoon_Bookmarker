@@ -16,8 +16,8 @@
 -   CRXJS - https://crxjs.dev/vite-plugin
 
 # 남은 일
-
--   1.1버전 업데이트로 local말고 sync로 북마크리스트 저장해보기
+- 스토어에 제출해보기 (심사 중)
+- 1.1버전 업데이트로 local말고 sync로 북마크리스트 저장해보기
 
 # 버그
 
