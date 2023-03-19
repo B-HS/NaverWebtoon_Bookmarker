@@ -1,11 +1,20 @@
 {
     "manifest_version": 3,
-    "name": "Naver Webtoon Bookmarker",
-    "version": "1.0.0",
+    "name": "네이버 웹툰 북마크",
+    "version": "1.0",
+    "icons": {
+        "16": "logo128.png",
+        "32": "logo128.png",
+        "48": "logo128.png",
+        "128": "logo128.png"
+    },
+    "description": "Naver bookmarking extension",
+    "homepage_url": "https://github.com/B-HS/Naver_Webtoon_Bookmarker",
+    "author": "Hynseok Byun",
     "action": {
         "default_title": "Popup",
         "default_popup": "index.html",
-        "default_icon": "logo192.png"
+        "default_icon": "logo128.png"
     },
     "permissions": ["storage"],
     "content_scripts": [

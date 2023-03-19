@@ -10,10 +10,6 @@ const Body = ({ currentMenu }: { currentMenu: string }) => {
 
     const bookmarkManaging = (target: string) => {
         if (bookmark) {
-            if (target === 'clear') {
-                setBookmark(() => []);
-                return;
-            }
             if (bookmark.includes(target)) {
                 setBookmark(() => bookmark.filter((v) => v != target));
             } else {
@@ -62,13 +58,7 @@ const Body = ({ currentMenu }: { currentMenu: string }) => {
     return (
         <Flex padding={5} flexDirection={'column'} gap={2}>
             <Flex gap={3} align={'baseline'}>
-                <Text
-                    fontSize={'lg'}
-                    paddingLeft={1}
-                    onClick={() => {
-                        bookmarkManaging('clear');
-                    }}
-                >
+                <Text fontSize={'lg'} paddingLeft={1}>
                     {currentMenu + '요일'} 북마크 목록
                 </Text>
                 <Text fontSize={'xs'}> 클릭으로 북마크가 설정가능합니다 (✓표시)</Text>
