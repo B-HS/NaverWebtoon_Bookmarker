@@ -86,7 +86,10 @@ export const Popup = () => {
                     ?.map((webtoon) => (
                         <Button
                             onClick={() => toggleBookmark(webtoon)}
-                            className={cn('justify-start w-full items-center !gap-x-1 !py-0.5 hover:text-blue-700', bookmarks?.includes(webtoon) && 'font-bold text-blue-700')}
+                            className={cn(
+                                'justify-start w-full items-center !gap-x-1 !py-0.5 hover:text-blue-700',
+                                bookmarks?.includes(webtoon) && 'font-bold text-blue-700',
+                            )}
                             variant={'ghost'}
                             size={'sm'}
                             key={webtoon}>
