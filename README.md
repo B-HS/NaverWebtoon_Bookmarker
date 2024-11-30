@@ -1,6 +1,8 @@
-![스크린샷 2023-03-12 오후 2 27 03](https://user-images.githubusercontent.com/49316060/224526217-d0375891-7860-4731-b5c9-a4e75357ed0a.png)
+<img width="1296" alt="chrom_bookmarker2" src="https://github.com/user-attachments/assets/95366e95-bc2d-4b4a-af93-fdeb77851301">
 
-## [크롬 익스텐션 스토어에서 보기 (링크 이동)](https://chromewebstore.google.com/detail/%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%ED%88%B0-%EB%B6%81%EB%A7%88%ED%81%AC/cnfglfaobnkgkcnagfbaeilbpkcjcanh)
+
+> 현재 익스텐션 스토어 검토 중  
+~~## [크롬 익스텐션 스토어에서 보기 (링크 이동)](https://chromewebstore.google.com/detail/%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%ED%88%B0-%EB%B6%81%EB%A7%88%ED%81%AC/cnfglfaobnkgkcnagfbaeilbpkcjcanh)~~
 
 # 네이버 웹툰 북마크 크롬 익스텐션
 
