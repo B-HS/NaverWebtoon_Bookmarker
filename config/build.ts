@@ -4,16 +4,11 @@ import manifest from '../public/manifest.json'
 import './cwd'
 
 const outdir = './build'
-
 const { content_scripts } = manifest
-
 const scripts = content_scripts.flatMap((script) => script.js)
-
-const resolveEntryPoints = (entrypoints: string[]) => {
-    return entrypoints.map((entrypoint) => `./src/${entrypoint}`)
-}
-
 const publicFolder = './public'
+
+const resolveEntryPoints = (entrypoints: string[]) => entrypoints.map((entrypoint) => `./src/${entrypoint}`)
 
 await $`rm -rf ${outdir}`
 
@@ -25,12 +20,11 @@ const ext = {
 
 await Bun.build({
     target: 'browser',
-    entrypoints: resolveEntryPoints([...scripts, 'options/index.tsx', 'popup/index.tsx']),
+    entrypoints: resolveEntryPoints([...scripts, 'popup/index.tsx']),
     outdir,
 })
 
 const glob = new Glob('**')
-
 const globalCssFile = Bun.file(`${publicFolder}/global.css`)
 
 if (!globalCssFile.exists()) throw new Error('global.css not found')

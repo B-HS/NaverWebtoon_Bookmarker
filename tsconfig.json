@@ -23,7 +23,8 @@
             "@ui/*": ["./src/ui/*"],
             "@utils/*": ["./src/utils/*"],
             "@hooks/*": ["./src/hooks/*"],
-            "@icons/*": ["./src/icons/*"]
+            "@icons/*": ["./src/icons/*"],
+            "@widgets/*": ["./src/widgets/*"]
         }
     }
 }

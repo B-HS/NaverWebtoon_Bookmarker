@@ -14,7 +14,6 @@
         "default_title": "네이버 웹툰 북마크 Action Title",
         "default_popup": "popup/index.html"
     },
-    "options_page": "options/index.html",
     "host_permissions": ["https://comic.naver.com/*"],
     "permissions": ["storage"],
     "content_scripts": [
