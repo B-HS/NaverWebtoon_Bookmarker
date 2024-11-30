@@ -1,9 +1,6 @@
 import { cn } from '@src/utils'
 import { Button } from '@ui/button'
 import { Check } from 'lucide-react'
-import { type Dispatch, type SetStateAction } from 'react'
-import { type Days } from '../../constant'
-import { PopupHeader } from './popup-header'
 
 export const PopupContent = ({
     keyword,
