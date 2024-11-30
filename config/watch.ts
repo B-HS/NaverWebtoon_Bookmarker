@@ -27,9 +27,6 @@ await runBuild()
 
 const directories = directoriesToWatch.join(', ')
 const defaultWatchMessage = `Watching ${directories} directories for changes...`
-
-console.log(chalk.bold(defaultWatchMessage))
-
 const watchers: FSWatcher[] = []
 
 for (const directory of directoriesToWatch) {
